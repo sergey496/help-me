@@ -1,6 +1,10 @@
 module.exports = function count(s, pairs) {
-   		let N=1;
+  		let N=1;
 		if (pairs[0][1]>100){
+			return 0;
+		}
+		if (pairs.length>4)
+		{
 			return 0;
 		}
 		if (s.length>5){
@@ -44,7 +48,7 @@ module.exports = function count(s, pairs) {
 			}else{
 				m=n;
 			}
-				for (let i=2;i<m;i++){
+				for (let i=2;i<=m;i++){
 					
 					if ((x%i==0)&&(n%i==0)){
 						return 0;
