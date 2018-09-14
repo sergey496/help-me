@@ -1,6 +1,6 @@
 module.exports = function count(s, pairs) {
 		let N=1;
-		if(pairs.length>6){
+		if(pairs.length>=6){
 			return 0;	
 		}
 		for (let i=0;i<pairs.length;i++){
