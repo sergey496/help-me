@@ -1,59 +1,50 @@
 module.exports = function count(s, pairs) {
-  		let N=1;
-		if (pairs[0][1]>100){
-			return 0;
+		let N=1;
+		if(pairs.length>6){
+			return 0;	
 		}
-		if (pairs.length>4)
-		{
-			return 0;
+		for (let i=0;i<pairs.length;i++){
+			N*=pairs[i][0];
 		}
-		if (s.length>5){
-			return 0;
-		}
-			for (let i=0;i<pairs.length;i++){
-				N*=Math.pow(pairs[i][0],pairs[i][1]);
-			}
-			let arr=[];
-			let counter=0;
-			for (let i=0;i<=N;i++){
-				arr[i]=0;
-			}
+		
+		let counter=0;
+		let X;
+		
+		for (let i=1;i<=N;i++){
+			X=0;
 			for (let j=0;j<s.length;j++){
 				if (s[j]=='0'){
-					for (let i=1;i<=N;i++){
-						if (NOD(i+j,N)!=1){
-							arr[i]+=1;
-						}
+					if (NOD(i+j,N)!=1){
+						X+=1;
 					}
 				}else{
-					for (let i=1;i<=N;i++){
-						if (NOD(i+j,N)==1){
-							arr[i]+=1;
-						}
+					if (NOD(i+j,N)==1){
+						X+=1;
 					}
 				}
 			}
-			for (let i=0;i<arr.length;i++){
-				if (arr[i]==s.length){
-				counter++;}
+			if (X==s.length){
+				counter++;
 			}
-			return counter
-			function NOD(x,n){
-			if (x==1){
-				return 1;
-			}
-			let m;
-			if (x>n){
-				m=x;
-			}else{
-				m=n;
-			}
-				for (let i=2;i<=m;i++){
-					
-					if ((x%i==0)&&(n%i==0)){
-						return 0;
-						}
-					}		
-				return 1;
-				}
+		}
+		
+		
+		function NOD(n, m) {
+		  if(m > 0) { 
+			var k = n%m;
+			return NOD(m, k); 
+		  } 
+		  else { 
+			return Math.abs(n);  
+		  }
+		}
+		for (let j=0;j<pairs.length;j++){
+			for	(let i=1;i<pairs[j][1];i++){
+				counter*=pairs[j][0];
+				counter=counter%1000000007;
+			}	
+		}
+		
+			return counter;
+
 }
