@@ -1,4 +1,13 @@
-module.exports = 	function count(s, pairs) {
+module.exports = function count(s, pairs) {
+
+let counter=0;
+if (s.length==1&& s=='1'){
+	counter=1;
+	for (let i=0;i<pairs.length;i++){
+		counter=counter*(pairs[i][0]-s.length);
+	}
+	return counter;
+}
 if (pairs.length>=8){
 	return 0;
 }
@@ -10,7 +19,7 @@ if (pairs.length>=8){
 			min=pairs[i];
 		}
 	}
-	let counter=0;
+
 	let tmp;
 	for (let i =1;i<=N;i++){
 		tmp=0;
